@@ -39,21 +39,64 @@ body {
   opacity: .8;
 }
 
-#center, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above {
+#center, #top, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above {
   position: absolute;
+  font-size: 4rem;
 }
 
+/* ============================= */
 /**** Define widget locations ****/
+/* ============================= */
+
 #center {
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.logo {
-  font-size: 7rem;
+#center-above {
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+#center-below {
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#top {
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#top-left {
+  top: 0%;
+  left: 0%;
+}
+
+#top-right {
+  top: 0%;
+  right: 0%;
+}
+
+#bottom {
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#bottom-left {
+  bottom: 0%;
+  left: 0%;
+}
+
+#bottom-right {
+  bottom: 0%;
+  right: 0%;
+}
 
 
 
