@@ -1,0 +1,14 @@
+{
+  "name": "snowmentum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/danthareja/snowmentum",
+  "authors": [
+    "Dan Thareja <danthareja@gmail.com>"
+  ],
+  "description": "Momentum for skiers and snowboarders",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.24"
+  }
+}

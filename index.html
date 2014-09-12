@@ -1,20 +1,14 @@
 <!doctype html>
-<html>
+<html ng-app="snowmentum">
   <head>
     <title>New Tab</title>
     <link rel="stylesheet" type="text/css" href="app/main.css">
-    <!--     
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html -->
-     
-    <script src="app/main.js"></script>
   </head>
+
   <body>
     <div id="background"></div>
     <div id="widgets">
-      <div id="center">Snowmentum&trade;</div>
+      <div id="center" ng-controller="CenterController">{{title}}</div>
       <div id="center-above">center-above</div>
       <div id="center-below">center-below</div>
       <div id="top">top</div>
@@ -24,6 +18,11 @@
       <div id="bottom-left">bottom-left</div>
       <div id="bottom-right">bottom-right</div>
     </div>
+
+    <!-- bower components -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- App -->
+    <script src="app/main.js"></script>
   </body>
 </html>
 

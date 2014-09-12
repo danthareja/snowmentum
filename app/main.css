@@ -1,6 +1,6 @@
 html { 
   height: 100%;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
 
 #center, #top, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above {
   position: absolute;
-  font-size: 4rem;
+  font-size: 1rem;
 }
 
 /* ============================= */
@@ -52,6 +52,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 5rem;
 }
 
 #center-above {
