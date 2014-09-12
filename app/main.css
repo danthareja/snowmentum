@@ -1,0 +1,61 @@
+html { 
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: #fff;
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 1px 5px rgba(0,0,0,0.1); 
+}
+
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('/assets/images/1.jpg');
+}
+
+#widgets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  opacity: .8;
+}
+
+#center, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above {
+  position: absolute;
+}
+
+/**** Define widget locations ****/
+#center {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  font-size: 7rem;
+}
+
+
+
+
+
+
