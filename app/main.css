@@ -26,7 +26,7 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url('/assets/images/1.jpg');
+  background-image: url('/assets/images/surf2.jpg');
 }
 
 #widgets {
@@ -39,65 +39,21 @@ body {
   opacity: .8;
 }
 
-#center, #top, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above {
-  position: absolute;
-  font-size: 1rem;
-}
 
-/* ============================= */
-/**** Define widget locations ****/
-/* ============================= */
+#center, #top-left, #top-right, #bottom, #bottom-right, #bottom-left, #center-below, #center-above { font-size: 2rem; position: absolute; z-index: 2; opacity: .8; }
+#center, #center-below, #center-above { display: block; top: 50%; left: 50%; width: 100%; text-align: center; -webkit-transform: translate(-50%,-50%); -webkit-transform-origin: 50% 50%; }
+#center { font-size: 5rem; }
 
-#center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 5rem;
-}
+#top-right { top: 0; right: 0; }
+#top-left { top: 0; left: 0; }
 
-#center-above {
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+#bottom { bottom: 0; left: 50%; opacity: 1; -webkit-transform: translateX(-50%); -webkit-transform-origin: 50% 50%; }
+#bottom-right { bottom: 0; right: 0; z-index: 100; }
+#bottom-left { bottom: 0; left: 0; z-index: 100; }
 
-#center-below {
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#top {
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-}
-
-#top-left {
-  top: 0%;
-  left: 0%;
-}
-
-#top-right {
-  top: 0%;
-  right: 0%;
-}
-
-#bottom {
-  bottom: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-}
-
-#bottom-left {
-  bottom: 0%;
-  left: 0%;
-}
-
-#bottom-right {
-  bottom: 0%;
-  right: 0%;
-}
+#center-below, #center-above { left: 0; top: 73.5%; -webkit-transform: translate(0,0); text-align: center; }
+#center-above { top: 0; z-index: 1; }
+#center-below { z-index: 10; }
 
 
 
