@@ -42,13 +42,10 @@ angular.module('snowmentum', [])
   };
 
   factory.getPeriod = function(date) {
-    if (date.getHours() > 4 && date.getHours() < 11) {
-      return "morning";
-    } else if (date.getHours() >= 11 && date.getHours() < 5) {
-      return "afternoon";
-    } else {
-      return "evening";
-    }
+    var hour = date.getHours();
+    if (hour >= 3 && hour < 12) return 'morning';
+    if (hour >= 12 && hour < 17) return 'afternoon';
+    if (hour >= 17 || hour < 3) return 'evening';
   };
 
   factory.getWeekday = function(date) {
@@ -59,7 +56,7 @@ angular.module('snowmentum', [])
   return factory;
 })
 
-.controller('MainController', function($scope, MagicSeaweed, DateFactory) {
+.controller('MainController', function($scope, $window, MagicSeaweed, DateFactory) {
   // Clock inputs
   var date = DateFactory.getDate();
   $scope.time = date.toLocaleTimeString(navigator.language, {hour12: false, hour: '2-digit', minute:'2-digit'});
@@ -74,6 +71,13 @@ angular.module('snowmentum', [])
   $scope.resetSpot = function() {
     $scope.spotNumber = "";
     $scope.hasSpot = false;
+  };
+
+  // Chrome apps
+  $scope.navToChromeApps = function() {
+    chrome.tabs.update({
+        url:'chrome://apps'
+    });
   };
 
   // Get data from MSW & find next good day

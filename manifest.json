@@ -6,7 +6,9 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": [ "http://magicseaweed.com/" ],
+  "permissions": [ 
+    "http://magicseaweed.com/"
+  ],
   "content_security_policy": "script-src 'self' chrome://apps/; object-src 'self'",
   "manifest_version": 2
 }
