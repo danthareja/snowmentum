@@ -71,8 +71,14 @@ angular.module('snowmentum', [])
   // ng-if inputs
   $scope.hasSpot = false;
 
+  $scope.resetSpot = function() {
+    $scope.spotNumber = "";
+    $scope.hasSpot = false;
+  };
+
   // Get data from MSW & find next good day
   $scope.getForecast = function(spotNumber) {
+    $scope.spotNumber = spotNumber;
     MagicSeaweed.getForecast(spotNumber, function(forecastData) {
       var nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData); // Comes back in date format
       

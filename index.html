@@ -24,14 +24,14 @@
         </div>
       </div>
 
-      <!-- center-above?? -->
-      <div id="center-above">center-above</div>
+      <!-- Maybe put something here? -->
+      <!-- <div id="center-above">center-above</div> -->
 
       <!-- Surf spot -->
       <div id="center-below">
         <div id="focuses">
           <!-- Input spot: Add fade out -->
-          <div class="prompt" ng-if="!hasSpot">
+          <div ng-if="!hasSpot" class="prompt">
             <form ng-submit="getForecast(spotNumber)">
               <h3>Where do you surf?
                 <input ng-model="spotNumber" type="text">
@@ -43,17 +43,15 @@
       </div>
 
       <!-- Link to Chrome Apps -->
-      <div id="top-left"><a href="chrome://apps">Apps</a></div>
+      <div id="top-left"><a class="apps" href="chrome://apps">Apps</a></div>
 
       <!-- Change your surf spot -->
-      <div id="top-right">
-        <div id="momentum">
-          <span class=logo>top-right</span>
-        </div>
+      <div ng-if="hasSpot" id="top-right">
+        <a class="resetspot" href="#" ng-click="resetSpot()">Change spot</a>
       </div>
 
       <!-- Maybe display title of surf spot if active? -->
-      <div id="bottom" ng-if="hasSpot">{{ spotNumber }}</div>
+      <div ng-if="hasSpot" id="bottom">Current spot: {{ spotNumber }}</div>
 
       <!-- Background info -->
       <div id="bottom-left">
