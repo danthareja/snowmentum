@@ -105,7 +105,6 @@ a:hover {
   opacity: 1;
 }
 
-
 /*
   ==================
   Widget Definitions
@@ -127,19 +126,6 @@ a:hover {
 
   #greeting .name { display: inline-block; max-width: 15em; margin: -5px 0; padding: 5px 0; border-top-left-radius: 1px; border-top-right-radius: 1px; cursor: default; outline: none; overflow: hidden; -webkit-user-select: none; user-select: none; vertical-align: top; }
   #greeting .editing { min-width: 1.5em; margin-bottom: -8px; border-bottom: 3px solid #fff; cursor: auto; }
-
-
-  /* Short Quotes */
-
-  #shortquote { width: 100%; margin: 0; padding: 13px 0 1px; text-align: center; }
-    #shortquote p { margin: 0; color: rgba(255,255,255,0.8); line-height: 1.25em; transition: all 0.2s ease-out; }
-
-    #shortquote .body { font-size: 18px; transition-delay: 0.2s; }
-      #shortquote:hover .body { -webkit-transform: translateY(-0.7em); transition-delay: 0s; }
-
-    #shortquote .source { position: relative; top: -19px; font-size: 14px; opacity: 0; transition-delay: 0s; }
-      #shortquote:hover .source { opacity: 1; -webkit-transform: translateY(0.5em); transition-delay: 0.2s; }
-
 
   /* Introduction */
 
@@ -192,8 +178,33 @@ a:hover {
   #bottom-left { opacity: 1; transition: all 0.2s ease-in; }
     #bottom-left:hover { opacity: 1; }
 
-  #background-info, #momentum { display: inline-block; }
+  #background-info, #spot-info, #spot-change, #chrome-apps #momentum { display: inline-block; }
 
+  /* Spot info */
+  #spot-info { height: 80px; width: 240px; position: absolute; bottom: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; -webkit-transform: translateX(-50%);}
+    #spot-info .current { 
+      position: absolute;
+      bottom: 10px;
+      transform: translateX(50%);
+    }
+
+  /* Spot change */
+  #spot-change { height: 80px; width: 240px; position: absolute; top: 0; right: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; }
+    #spot-change .resetspot { 
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+  /* Chrome apps*/
+  #chrome-apps { height: 80px; width: 240px; position: absolute; top: 0; left: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; }
+    #chrome-apps .apps { 
+      position: absolute;
+      top: 5px;
+      left: 10px;
+    }
+
+  /* Background info*/
   #background-info { height: 80px; width: 240px; position: absolute; left: 0; bottom: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; }
     #background-info.fadeout { -webkit-animation: fadeout 8s ease 12s forwards; }
 
@@ -216,26 +227,3 @@ a:hover {
 
     #background-info .actions { position: relative; bottom: 63px; left: 0; background: rgba(0,0,0,0.8); border-radius: 10px; opacity: 0; transition: all 0.2s ease; -webkit-transform-origin: 25% 100%; -webkit-transform: translateY(8px) scale(0.8); z-index: 0; }
       #background-info.active .actions { visibility: visible; opacity: 1; -webkit-transform: translateY(0) scale(1); z-index: 1; }
-
-  .light { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
-  #momentum, #momentum .logo { vertical-align: bottom }
-  #momentum { cursor: pointer; display: inline-block; opacity: 0.7; transition: all 0.2s ease; }
-    #momentum:hover { opacity: 0.85; }
-
-    #momentum .logo { width: 40px; padding: 10px; }
-    #momentum a { cursor: pointer; }
-
-    #momentum.active { transition: all 0s ease; }
-      #momentum.active .logo, #momentum.active ul { }
-      #momentum.active .logo { opacity: 1; }
-      #momentum.active ul { background: rgba(0,0,0,0.7); opacity: 1; transition: all 0.2s ease; -webkit-transform: scale(1); visibility: visible; }
-
-    #momentum ul { margin: 0; margin-left: 5px; position: relative; top: 0px; opacity: 0; border-radius: 10px; -webkit-transform: scale(0); -webkit-transform-origin: 12% 0%; transition: all 0.2s ease; visibility: hidden; }
-      #momentum ul:after { width: 0; height: 0; position: absolute; top: -7px; left: 19px; border-bottom: 7px solid rgba(0,0,0,0.7); border-left: 5px solid transparent; border-right: 5px solid transparent; content: "" }
-      #momentum li:first-child a { border-top-left-radius: 10px; border-top-right-radius: 10px; padding-top: 14px; }
-      #momentum li:last-child a { border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding-bottom: 14px; }
-      #momentum a { height: 100%; padding: 7px 20px; display: block; cursor: pointer; font-size: 1em; opacity: 0.6; }
-        #momentum a:hover { opacity: 1; }
-
-  /* App Return */

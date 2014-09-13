@@ -43,15 +43,25 @@
       </div>
 
       <!-- Link to Chrome Apps -->
-      <div id="top-left"><a class="apps" href="chrome://apps">Apps</a></div>
+      <div id="top-left">
+        <div id="chrome-apps">
+          <a class="apps" href="chrome://apps">Apps</a>
+        </div>
+      </div>
 
       <!-- Change your surf spot -->
       <div ng-if="hasSpot" id="top-right">
-        <a class="resetspot" href="#" ng-click="resetSpot()">Change spot</a>
+        <div id="spot-change">
+          <a class="resetspot" href="#" ng-click="resetSpot()">Change spot</a>
+        </div>
       </div>
 
       <!-- Maybe display title of surf spot if active? -->
-      <div ng-if="hasSpot" id="bottom">Current spot: {{ spotNumber }}</div>
+      <div ng-if="hasSpot" id="bottom">
+        <div id="spot-info">
+          <span class="current"> Current spot: {{ spotNumber }} </span>
+        </div>
+      </div>
 
       <!-- Background info -->
       <div id="bottom-left">
