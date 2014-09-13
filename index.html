@@ -11,11 +11,14 @@
 
       <!-- Clock & greeting -->
       <div id="center">
-        <div id="centerclock" ng-controller="ClockController">
+        <div id="centerclock">
           <h1>{{ time }}</h1>
         </div>
-        <div id="greeting" ng-controller="GreetingController">
-          <h2>
+        <div id="greeting">
+          <h2 ng-if="!hasSpot">
+            Good <span>{{ period }}</span>, <span>{{ name }}</span>.
+          </h2>
+          <h2 ng-if="hasSpot">
             Good <span>{{ period }}</span>, <span>{{ name }}</span>.
           </h2>
         </div>
@@ -25,15 +28,17 @@
       <div id="center-above">center-above</div>
 
       <!-- Surf spot -->
-      <div id="center-below" ng-controller="SurfSpotController">
+      <div id="center-below">
         <div id="focuses">
-          <div class="prompt">
-            <form ng-submit="getForecast(surfSpot)">
+          <!-- Input spot: Add fade out -->
+          <div class="prompt" ng-if="!hasSpot">
+            <form ng-submit="getForecast(spotNumber)">
               <h3>Where do you surf?
-                <input ng-model="surfSpot" type="text">
+                <input ng-model="spotNumber" type="text">
               </h3>
             </form>
           </div>
+          <!-- Display graph -->
         </div>
       </div>
 
@@ -48,7 +53,7 @@
       </div>
 
       <!-- Maybe display title of surf spot if active? -->
-      <div id="bottom">current surf spot</div>
+      <div id="bottom" ng-if="hasSpot">{{ spotNumber }}</div>
 
       <!-- Background info -->
       <div id="bottom-left">
@@ -62,7 +67,7 @@
 
       <!-- MSW link -->
       <div id="bottom-right">
-        <a href="http://magicseaweed.com/{{spotNumber}}"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+        <a href="http://magicseaweed.com/"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
       </div>
     </div>
 
@@ -70,9 +75,6 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <!-- App -->
     <script src="app/app.js"></script>
-    <script src="app/clock.js"></script>
-    <script src="app/greeting.js"></script>
-    <script src="app/surfspot.js"></script>
   </body>
 </html>
 

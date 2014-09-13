@@ -1,15 +1,87 @@
 angular.module('snowmentum', [])
 
-.controller('MainController', function($scope) {
-  
+.factory('MagicSeaweed', function($http) {
+  var MSW_API_KEY = "jx5HFZ5OyPH6zqKR9Pb8k230iSGymW2Q";
+  var MSW_API_SECRET = "48Kx1256b8VpNBHLKh5pA3Q77BN2asqy";
+  var factory = {};
+
+  // API call to MSW - returns array of forecast data over the next five days
+  factory.getForecast = function(spotNumber, callback) {
+    $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber)
+      .success(function(forecastData) {
+        // Add formattedDate to each entry
+        forecastData.forEach(function(forecast) {
+          var forecastDate = new Date(forecast.localTimestamp * 1000);
+          forecast.formattedDate = forecastDate;
+        });
+        console.log("Got MSW surf forecastData!", forecastData);
+        callback(forecastData);
+      })
+      .error(function(data) {
+        console.log("error getting data from msw", data);
+      });
+  };
+
+  // Filters surf spots to find next spot with at least three solid stars
+  factory.getNextGoodDay = function(forecastData) {
+    var goodDays = forecastData.filter(function(forecast) {
+      return forecast.solidRating >= 3;
+    });
+    return goodDays[0];
+  };
+
+  return factory;
+})
+
+.controller('MainController', function($scope, MagicSeaweed) {
+  // Clock inputs
+  var date = new Date();
+  $scope.time = date.toLocaleTimeString(navigator.language, {hour12: false, hour: '2-digit', minute:'2-digit'});
+
+  // Greeting inputs
+  var getPeriod = function(date) {
+    if (date.getHours() > 4 && date.getHours() < 11) {
+      return "morning";
+    } else if (date.getHours() >= 11 && date.getHours() < 5) {
+      return "afternoon";
+    } else {
+      return "evening";
+    }
+  };
+
+  $scope.period = getPeriod(date);
+  $scope.name = "Dan";
+
+  // ng-if inputs
+  $scope.hasSpot = false;
+
+  // Get data from MSW & find next good day
+  $scope.getForecast = function(spotNumber) {
+    MagicSeaweed.getForecast(spotNumber, function(forecastData) {
+      $scope.nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData);
+      window.nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData);
+      $scope.hasSpot = true;
+    });
+  };
+
 });
 
 
 /**** 
-Something like, store user's local spot in local storage
-On load check if there's a spot, if not ask for one
-Once one is entered and stashed, remove the input fields
-display heady dope visuals (maybe graph similar to msw? definitely wind/swell arrows but keep it tight and speedy)
+surfmentum v2:
 
-Also, think of a better way to name forecast it gets confusing
+without a spot entered:
+Clock stays,
+Greeting is "Hello, Dan"
+text is "Enter a MSW spot number?" with input
+
+with entered:
+Greeting is "Get ready to surf on {{ Next best day }}, Dan"
+text is now trend graph for the next week , clean line graph
+** all based on MSW star  ratings
+
+- top left: apps
+- top right: shows current spot, or change a spot
+- lower left: spot of picture + attribution
+- lower right pointing to surf spot
 ****/
