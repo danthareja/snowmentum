@@ -2,27 +2,75 @@
 <html ng-app="snowmentum" ng-csp>
   <head>
     <title>New Tab</title>
-    <link rel="stylesheet" type="text/css" href="app/main.css">
-    <link rel="stylesheet" type="text/css" href="app/msw.css">
+    <link rel="stylesheet" type="text/css" href="app/app.css">
   </head>
 
-  <body>
+  <body ng-controller="MainController">
     <div id="background"></div>
     <div id="widgets">
-      <div id="center" ng-controller="CenterController">{{title}}</div>
+
+      <!-- Clock & greeting -->
+      <div id="center">
+        <div id="centerclock" ng-controller="ClockController">
+          <h1>{{time}}</h1>
+        </div>
+        <div id="greeting" ng-controller="GreetingController">
+          <h2>
+            Good <span>{{period}}</span>, <span>{{name}}</span>.
+          </h2>
+        </div>
+      </div>
+
+      <!-- center-above?? -->
       <div id="center-above">center-above</div>
-      <div id="center-below"><span class="msw-ssa msw-ssa-10"></span>center-below</div>
-      <div id="top-left">top-left</div>
-      <div id="top-right">top-right</div>
-      <div id="bottom">bottom</div>
-      <div id="bottom-left">bottom-left</div>
-      <div id="bottom-right"><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a></div>
+
+      <!-- Surf spot -->
+      <div id="center-below" ng-controller="SurfSpotController">
+        <div id="focuses">
+          <div class="prompt">
+            <h3>Where do you surf?
+              <input type="text">
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Link to Chrome Apps -->
+      <div id="top-left"><a href="chrome://apps">Apps</a></div>
+
+      <!-- Change your surf spot -->
+      <div id="top-right">
+        <div id="momentum">
+          <span class=logo>top-right</span>
+        </div>
+      </div>
+
+      <!-- Maybe display title of surf spot if active? -->
+      <div id="bottom">current surf spot</div>
+
+      <!-- Background info -->
+      <div id="bottom-left">
+        <div id="background-info">
+          <span class="title">Picture spot</span>
+          <span class="source">
+            <a href="#" class="source-url">Photo cred</a>
+          </span>
+        </div>
+      </div>
+
+      <!-- MSW link -->
+      <div id="bottom-right">
+        <a href="http://magicseaweed.com/{{spotNumber}}"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+      </div>
     </div>
 
     <!-- bower components -->
     <script src="bower_components/angular/angular.min.js"></script>
     <!-- App -->
-    <script src="app/main.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/clock.js"></script>
+    <script src="app/greeting.js"></script>
+    <script src="app/surfspot.js"></script>
   </body>
 </html>
 
