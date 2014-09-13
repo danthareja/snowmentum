@@ -9,7 +9,7 @@ angular.module('snowmentum', [])
   factory.getForecast = function(spotNumber, callback) {
     $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber)
       .success(function(forecastData) {
-        // Add formattedDate to each entry
+        // Add formattedDate to each entry. Figure out this date?
         forecastData.forEach(function(forecast) {
           var forecastDate = new Date(forecast.localTimestamp * 1000);
           forecast.formattedDate = forecastDate;
@@ -27,19 +27,20 @@ angular.module('snowmentum', [])
     var goodDays = forecastData.filter(function(forecast) {
       return forecast.solidRating >= 3;
     });
-    return goodDays[0];
+    return goodDays[0].formattedDate;
   };
 
   return factory;
 })
 
-.controller('MainController', function($scope, MagicSeaweed) {
-  // Clock inputs
-  var date = new Date();
-  $scope.time = date.toLocaleTimeString(navigator.language, {hour12: false, hour: '2-digit', minute:'2-digit'});
+.factory('DateFactory', function() {
+  var factory = {};
 
-  // Greeting inputs
-  var getPeriod = function(date) {
+  factory.getDate = function() {
+    return new Date();
+  };
+
+  factory.getPeriod = function(date) {
     if (date.getHours() > 4 && date.getHours() < 11) {
       return "morning";
     } else if (date.getHours() >= 11 && date.getHours() < 5) {
@@ -49,7 +50,21 @@ angular.module('snowmentum', [])
     }
   };
 
-  $scope.period = getPeriod(date);
+  factory.getWeekday = function(date) {
+    var weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    return weekdays[date.getDay()];
+  };
+
+  return factory;
+})
+
+.controller('MainController', function($scope, MagicSeaweed, DateFactory) {
+  // Clock inputs
+  var date = DateFactory.getDate();
+  $scope.time = date.toLocaleTimeString(navigator.language, {hour12: false, hour: '2-digit', minute:'2-digit'});
+
+  // Greeting inputs
+  $scope.period = DateFactory.getPeriod(date);
   $scope.name = "Dan";
 
   // ng-if inputs
@@ -58,8 +73,9 @@ angular.module('snowmentum', [])
   // Get data from MSW & find next good day
   $scope.getForecast = function(spotNumber) {
     MagicSeaweed.getForecast(spotNumber, function(forecastData) {
-      $scope.nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData);
-      window.nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData);
+      var nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData); // Comes back in date format
+      $scope.nextGoodDay = DateFactory.getWeekday(nextGoodDay) + " " + DateFactory.getPeriod(nextGoodDay);
+      console.log($scope.nextGoodDay);
       $scope.hasSpot = true;
     });
   };
