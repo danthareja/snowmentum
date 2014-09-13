@@ -1,5 +1,6 @@
 angular.module('snowmentum')
 
 .controller('ClockController', function($scope) {
-  $scope.time = "16:16";
+  var date = new Date();
+  $scope.time = date.getHours() + ":" + date.getMinutes();
 });

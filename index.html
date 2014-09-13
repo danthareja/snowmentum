@@ -12,11 +12,11 @@
       <!-- Clock & greeting -->
       <div id="center">
         <div id="centerclock" ng-controller="ClockController">
-          <h1>{{time}}</h1>
+          <h1>{{ time }}</h1>
         </div>
         <div id="greeting" ng-controller="GreetingController">
           <h2>
-            Good <span>{{period}}</span>, <span>{{name}}</span>.
+            Good <span>{{ period }}</span>, <span>{{ name }}</span>.
           </h2>
         </div>
       </div>
@@ -28,9 +28,11 @@
       <div id="center-below" ng-controller="SurfSpotController">
         <div id="focuses">
           <div class="prompt">
-            <h3>Where do you surf?
-              <input type="text">
-            </h3>
+            <form ng-submit="getForecast(surfSpot)">
+              <h3>Where do you surf?
+                <input ng-model="surfSpot" type="text">
+              </h3>
+            </form>
           </div>
         </div>
       </div>
