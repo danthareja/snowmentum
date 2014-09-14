@@ -60,7 +60,7 @@ angles.chart = function (type) {
                     $scope.options.responsive = $scope.responsive;
 
                 chartCreated = chart[type]($scope.data, $scope.options);
-                chartCreated.update();
+                // chartCreated.update();
                 if($scope.legend)
                     angular.element($elem[0]).parent().after( chartCreated.generateLegend() );
             }, true);
