@@ -2298,7 +2298,6 @@ var spotNameToNumber = {
   "Sydney Shark Island": 3769,
   "Sylt": 158,
   "T Land": 4106,
-  "TaA%26shy%3Bba": 2988,
   "Taapuna": 620,
   "Tabatinga": 3894,
   "Tabinha": 509,

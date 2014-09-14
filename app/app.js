@@ -1,4 +1,4 @@
-angular.module('snowmentum', [])
+angular.module('snowmentum', ["ui.bootstrap"])
 
 .factory('MagicSeaweed', function($http) {
   var MSW_API_KEY = "jx5HFZ5OyPH6zqKR9Pb8k230iSGymW2Q";
@@ -77,8 +77,9 @@ angular.module('snowmentum', [])
   };
 
   // Surf spot inputs
-  $scope.spots = spotNames; // From mswspots.js
+  $scope.spotNames = spotNames; // From mswspots.js
   $scope.spot = {};
+  console.log($scope.spotNames);
 
   $scope.resetSpot = function() {
     $scope.spot.name = "";

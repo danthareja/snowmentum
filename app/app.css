@@ -234,3 +234,11 @@ a:hover {
 
     #background-info .actions { position: relative; bottom: 63px; left: 0; background: rgba(0,0,0,0.8); border-radius: 10px; opacity: 0; transition: all 0.2s ease; -webkit-transform-origin: 25% 100%; -webkit-transform: translateY(8px) scale(0.8); z-index: 0; }
       #background-info.active .actions { visibility: visible; opacity: 1; -webkit-transform: translateY(0) scale(1); z-index: 1; }
+
+      .typeahead {
+        z-index: 1051;
+        margin-top: 2px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+      }
