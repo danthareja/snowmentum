@@ -32,10 +32,9 @@
         <div id="focuses">
           <!-- Input spot: Add fade out -->
           <div ng-if="!hasSpot" class="prompt">
-            <form ng-submit="getForecast(spotNumber)">
-              <h3>Where do you surf?
-                <input ng-model="spotNumber" type="text">
-              </h3>
+            <form ng-submit="getForecast()">
+              <h3>Where do you surf?</h3>
+              <input ng-model="spot.name" type="text">
             </form>
           </div>
           <!-- Display graph -->
@@ -56,10 +55,10 @@
         </div>
       </div>
 
-      <!-- Maybe display title of surf spot if active? -->
+      <!-- Current surf spot -->
       <div ng-if="hasSpot" id="bottom">
         <div id="spot-info">
-          <span class="current"> Current spot: {{ spotNumber }} </span>
+          <span class="current"> Current spot: {{ spot.name }} </span>
         </div>
       </div>
 
@@ -75,14 +74,17 @@
 
       <!-- MSW link -->
       <div id="bottom-right">
-        <a ng-href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+        <a ng-if="!hasSpot" ng-href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+        <a ng-if="hasSpot" ng-href="{{mswLink}}"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
       </div>
     </div>
 
     <!-- bower components -->
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/ui-bootstrap-typeahead.js"></script>
     <!-- App -->
     <script src="app/app.js"></script>
+    <script src="app/mswspots.js"></script>
   </body>
 </html>
 

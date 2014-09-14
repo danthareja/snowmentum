@@ -148,7 +148,7 @@ a:hover {
 
   #focuses .prompt h3 { font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif; font-weight: normal; }
   #focuses .focus h3 { text-transform: capitalize; }
-  #focuses .prompt input { font-size: 28px; width: 4em; border-bottom-width: 2px; font-weight: bold; line-height: 1.2em; }
+  #focuses .prompt input { font-size: 28px; width: 10em; border-bottom-width: 2px; font-weight: bold; line-height: 1.2em; }
 
   #focuses .focus p:hover .delete { opacity: 1; }
 
@@ -185,23 +185,30 @@ a:hover {
     #spot-info .current { 
       position: absolute;
       bottom: 10px;
-      transform: translateX(50%);
+      font-size: 1.05em;
+      line-height: 1.2em;
+      text-align: center;
+      width: 100%
     }
 
   /* Spot change */
   #spot-change { height: 80px; width: 240px; position: absolute; top: 0; right: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; }
     #spot-change .resetspot { 
       position: absolute;
-      top: 10px;
+      top: 20px;
       right: 20px;
+      font-size: 1.05em;
+      line-height: 1.2em;
     }
 
   /* Chrome apps*/
   #chrome-apps { height: 80px; width: 240px; position: absolute; top: 0; left: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; }
     #chrome-apps .apps { 
       position: absolute;
-      top: 5px;
-      left: 10px;
+      top: 20px;
+      left: 20px;
+      font-size: 1.05em;
+      line-height: 1.2em;
     }
 
   /* Background info*/

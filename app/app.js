@@ -3,12 +3,13 @@ angular.module('snowmentum', [])
 .factory('MagicSeaweed', function($http) {
   var MSW_API_KEY = "jx5HFZ5OyPH6zqKR9Pb8k230iSGymW2Q";
   var MSW_API_SECRET = "48Kx1256b8VpNBHLKh5pA3Q77BN2asqy";
-  // var MSW_QUERY = "&fields=localTimestamp,solidRating";
+  var MSW_QUERY = "&fields=localTimestamp,solidRating,fadedRating"
+
   var factory = {};
 
   // API call to MSW - returns array of forecast data over the next five days
   factory.getForecast = function(spotNumber, callback) {
-    $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber /*+ MSW_QUERY*/)
+    $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber + MSW_QUERY)
       .success(function(forecastData) {
         // Add formattedDate to each entry. Figure out this date?
         forecastData.forEach(function(forecast) {
@@ -68,11 +69,6 @@ angular.module('snowmentum', [])
   // ng-if inputs
   $scope.hasSpot = false;
 
-  $scope.resetSpot = function() {
-    $scope.spotNumber = "";
-    $scope.hasSpot = false;
-  };
-
   // Chrome apps
   $scope.navToChromeApps = function() {
     chrome.tabs.update({
@@ -80,10 +76,25 @@ angular.module('snowmentum', [])
     });
   };
 
+  // Surf spot inputs
+  $scope.spots = spotNames; // From mswspots.js
+  $scope.spot = {};
+
+  $scope.resetSpot = function() {
+    $scope.spot.name = "";
+    $scope.spot.number = "";
+    $scope.hasSpot = false;
+  };
+
+
   // Get data from MSW & find next good day
-  $scope.getForecast = function(spotNumber) {
-    $scope.spotNumber = spotNumber;
-    MagicSeaweed.getForecast(spotNumber, function(forecastData) {
+  $scope.getForecast = function() {
+    // Lookup spot number in giant ass mswspots.js object
+    $scope.spot.number = spotNameToNumber[$scope.spot.name];
+    $scope.mswLink = "http://magicseaweed.com/" + $scope.spot.name.replace(/\s+/g, '-') + "-Surf-Report/" + $scope.spot.number + "/";
+
+    // Get forecast from MSW
+    MagicSeaweed.getForecast($scope.spot.number, function(forecastData) {
       var nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData); // Comes back in date format
       
       // Check if there is going to be a good day, change message accordingly
@@ -94,23 +105,3 @@ angular.module('snowmentum', [])
   };
 
 });
-
-
-/**** 
-surfmentum v2:
-
-without a spot entered:
-Clock stays,
-Greeting is "Hello, Dan"
-text is "Enter a MSW spot number?" with input
-
-with entered:
-Greeting is "Get ready to surf on {{ Next best day }}, Dan"
-text is now trend graph for the next week , clean line graph
-** all based on MSW star  ratings
-
-- top left: apps
-- top right: shows current spot, or change a spot
-- lower left: spot of picture + attribution
-- lower right pointing to surf spot
-****/
