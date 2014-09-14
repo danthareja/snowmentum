@@ -7,8 +7,19 @@
 
   <body ng-controller="MainController">
     <div id="background"></div>
-    <div id="widgets">
-
+    <div id="widget">
+      <div id="center" ng-if="!name">
+        <div id="introduction">
+          <p>
+            <form ng-submit="saveName(name)">
+              <span>Hello, what's your name?</span>
+              <input type="text" ng-model="name">
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="widgets" ng-if="name">
       <!-- Clock & greeting -->
       <div id="center">
         <div id="centerclock">

@@ -130,8 +130,7 @@ a:hover {
   /* Introduction */
 
   #introduction { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.7em; text-align: center; }
-  #introduction { opacity: 0; }
-  #introduction input, #focuses .prompt input { background: 0; border: 0; width: 300px; border-bottom: 3px solid #fff; outline: none; color: #fff; text-align: center; }
+  #introduction input, #focuses .prompt input { font-size: 54px; background: 0; border: 0; width: 300px; border-bottom: 3px solid #fff; outline: none; color: #fff; text-align: center; }
   #introduction p { margin: 0; }
   #introduction .logo { margin-bottom: 10px; }
   #introduction img { width: 120px; vertical-align: bottom; }

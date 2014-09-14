@@ -64,7 +64,12 @@ angular.module('snowmentum', ["ui.bootstrap"])
 
   // Greeting inputs
   $scope.period = DateFactory.getPeriod(date);
-  $scope.name = "Dan";
+  $scope.name = localStorage.getItem('name');
+
+  $scope.saveName = function(name) {
+    localStorage.setItem('name', name);
+    $scope.name = name;
+  };
 
   // Chrome apps
   $scope.navToChromeApps = function() {
@@ -72,14 +77,13 @@ angular.module('snowmentum', ["ui.bootstrap"])
         url:'chrome://apps'
     });
   };
-  
+
   $scope.resetSpot = function() {
     localStorage.removeItem('surfSpot');
     $scope.spot.name = "";
     $scope.spot.number = "";
     $scope.hasSpot = false;
   };
-
 
   // Get data from MSW & find next good day
   $scope.getForecast = function() {
@@ -102,7 +106,7 @@ angular.module('snowmentum', ["ui.bootstrap"])
   };
 
   // Surf spot inputs
-  // Check if spot is stored in local storage
+  // Check if spot is stored in local storage --> TODO: Put this in run block
   if (!!localStorage.getItem('surfSpot')) {
     $scope.hasSpot = true;
     $scope.spot = JSON.parse(localStorage.getItem('surfSpot'));
