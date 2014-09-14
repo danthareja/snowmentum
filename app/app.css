@@ -181,7 +181,7 @@ a:hover {
   #background-info, #spot-info, #spot-change, #chrome-apps #momentum { display: inline-block; }
 
   /* Spot info */
-  #spot-info { height: 80px; width: 240px; position: absolute; bottom: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; -webkit-transform: translateX(-50%);}
+  #spot-info { height: 80px; width: 500px; position: absolute; bottom: 0; font-size: 0.9em; font-weight: 500; opacity: 1; transition: all 0.2s ease; -webkit-transform: translateX(-50%);}
     #spot-info .current { 
       position: absolute;
       bottom: 10px;

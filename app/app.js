@@ -66,21 +66,15 @@ angular.module('snowmentum', ["ui.bootstrap"])
   $scope.period = DateFactory.getPeriod(date);
   $scope.name = "Dan";
 
-  // ng-if inputs
-  $scope.hasSpot = false;
-
   // Chrome apps
   $scope.navToChromeApps = function() {
     chrome.tabs.update({
         url:'chrome://apps'
     });
   };
-
-  // Surf spot inputs
-  $scope.spots = spotNames; // From mswspots.js
-  $scope.spot = {};
-
+  
   $scope.resetSpot = function() {
+    localStorage.removeItem('surfSpot');
     $scope.spot.name = "";
     $scope.spot.number = "";
     $scope.hasSpot = false;
@@ -91,7 +85,10 @@ angular.module('snowmentum', ["ui.bootstrap"])
   $scope.getForecast = function() {
     // Lookup spot number in giant ass mswspots.js object
     $scope.spot.number = spotNameToNumber[$scope.spot.name];
-    $scope.mswLink = "http://magicseaweed.com/" + $scope.spot.name.replace(/\s+/g, '-') + "-Surf-Report/" + $scope.spot.number + "/";
+    $scope.spot.mswLink = "http://magicseaweed.com/" + $scope.spot.name.replace(/\s+/g, '-') + "-Surf-Report/" + $scope.spot.number + "/";
+
+    // Store spot object into localStorage
+    localStorage.setItem('surfSpot', JSON.stringify($scope.spot));
 
     // Get forecast from MSW
     MagicSeaweed.getForecast($scope.spot.number, function(forecastData) {
@@ -103,5 +100,19 @@ angular.module('snowmentum', ["ui.bootstrap"])
       $scope.hasSpot = true;
     });
   };
+
+  // Surf spot inputs
+  // Check if spot is stored in local storage
+  if (!!localStorage.getItem('surfSpot')) {
+    $scope.hasSpot = true;
+    $scope.spot = JSON.parse(localStorage.getItem('surfSpot'));
+    $scope.getForecast();
+  } else {
+    $scope.hasSpot = false;
+    $scope.spot = {};
+  }
+
+  $scope.spots = spotNames; // From mswspots.js
+
 
 });
