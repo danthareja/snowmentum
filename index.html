@@ -3,7 +3,7 @@
   <head>
     <title>New Tab</title>
     <link rel="stylesheet" type="text/css" href="app/app.css">
-    <link rel="stylesheet" type="text/css" href="assets/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.css">
   </head>
 
   <body ng-controller="MainController">
@@ -51,7 +51,7 @@
             <i ng-if="isProcessing" class="fa fa-spin fa-circle-o-notch fa-2x"></i>
           </div>
           <!-- Display graph -->
-          <canvas ng-if="hasSpot" linechart responsive="true" options="chartOptions" data="chart" width="500" height="150"></canvas>
+          <canvas ng-if="hasSpot" linechart options="chartOptions" data="chart" width="500" height="120"></canvas>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
       <!-- Current surf spot -->
       <div ng-if="hasSpot" id="bottom">
         <div id="spot-info">
-          <span class="current"> Current spot: {{ spot.name }} </span>
+          <span class="current">{{ spot.name }}</span>
         </div>
       </div>
 

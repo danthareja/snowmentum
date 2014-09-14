@@ -26,7 +26,7 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url('/assets/images/surf2.jpg');
+  background-image: url('/assets/images/surf1.jpg');
 }
 
 /*
@@ -147,7 +147,7 @@ a:hover {
 
   #focuses .prompt h3 { font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif; font-weight: normal; }
   #focuses .focus h3 { text-transform: capitalize; }
-  #focuses .prompt input { font-size: 28px; width: 10em; border-bottom-width: 2px; font-weight: bold; line-height: 1.2em; }
+  #focuses .prompt input { font-size: 28px; width: 14em; border-bottom-width: 2px; font-weight: bold; line-height: 1.2em; }
 
   #focuses .focus p:hover .delete { opacity: 1; }
 
