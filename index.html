@@ -3,6 +3,7 @@
   <head>
     <title>New Tab</title>
     <link rel="stylesheet" type="text/css" href="app/app.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body ng-controller="MainController">
@@ -43,10 +44,11 @@
         <div id="focuses">
           <!-- Input spot: Add fade out -->
           <div ng-if="!hasSpot" class="prompt">
-            <form ng-submit="getForecast()">
+            <form ng-if="!isProcessing" ng-submit="getForecast()">
               <h3>Where do you surf?</h3>
               <input type="text" ng-model="spot.name" typeahead="spot for spot in spots | filter:$viewValue | limitTo:8" typeahead-editable="false">
             </form>
+            <i ng-if="isProcessing" class="fa fa-spin fa-circle-o-notch fa-2x"></i>
           </div>
           <!-- Display graph -->
         </div>

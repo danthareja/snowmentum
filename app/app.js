@@ -3,13 +3,13 @@ angular.module('snowmentum', ["ui.bootstrap"])
 .factory('MagicSeaweed', function($http) {
   var MSW_API_KEY = "jx5HFZ5OyPH6zqKR9Pb8k230iSGymW2Q";
   var MSW_API_SECRET = "48Kx1256b8VpNBHLKh5pA3Q77BN2asqy";
-  var MSW_QUERY = "&fields=localTimestamp,solidRating,fadedRating"
+  // var MSW_QUERY = "&fields=localTimestamp,solidRating,fadedRating"
 
   var factory = {};
 
   // API call to MSW - returns array of forecast data over the next five days
   factory.getForecast = function(spotNumber, callback) {
-    $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber + MSW_QUERY)
+    $http.get('http://magicseaweed.com/api/' + MSW_API_KEY + '/forecast/?spot_id=' + spotNumber /*+ MSW_QUERY*/)
       .success(function(forecastData) {
         // Add formattedDate to each entry. Figure out this date?
         forecastData.forEach(function(forecast) {
@@ -87,6 +87,9 @@ angular.module('snowmentum', ["ui.bootstrap"])
 
   // Get data from MSW & find next good day
   $scope.getForecast = function() {
+    // Start animation
+    $scope.isProcessing = true;
+
     // Lookup spot number in giant ass mswspots.js object
     $scope.spot.number = spotNameToNumber[$scope.spot.name];
     $scope.spot.mswLink = "http://magicseaweed.com/" + $scope.spot.name.replace(/\s+/g, '-') + "-Surf-Report/" + $scope.spot.number + "/";
@@ -102,6 +105,7 @@ angular.module('snowmentum', ["ui.bootstrap"])
       $scope.nextGoodDayMessage = nextGoodDay ? DateFactory.getWeekday(nextGoodDay) + " " + DateFactory.getPeriod(nextGoodDay) + " looks sick, " + $scope.name : "Looks flat this week. Get to work, " + $scope.name;
 
       $scope.hasSpot = true;
+      $scope.isProcessing = false;
     });
   };
 
@@ -117,6 +121,6 @@ angular.module('snowmentum', ["ui.bootstrap"])
   }
 
   $scope.spots = spotNames; // From mswspots.js
-
+  $scope.isProcessing = false
 
 });
