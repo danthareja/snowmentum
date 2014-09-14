@@ -1,4 +1,4 @@
-angular.module('snowmentum', ["ui.bootstrap"])
+angular.module('snowmentum', ["ui.bootstrap", "angles"])
 
 .factory('MagicSeaweed', function($http) {
   var MSW_API_KEY = "jx5HFZ5OyPH6zqKR9Pb8k230iSGymW2Q";
@@ -100,9 +100,71 @@ angular.module('snowmentum', ["ui.bootstrap"])
     // Get forecast from MSW
     MagicSeaweed.getForecast($scope.spot.number, function(forecastData) {
       var nextGoodDay = MagicSeaweed.getNextGoodDay(forecastData); // Comes back in date format
-      
+
       // Check if there is going to be a good day, change message accordingly
       $scope.nextGoodDayMessage = nextGoodDay ? DateFactory.getWeekday(nextGoodDay) + " " + DateFactory.getPeriod(nextGoodDay) + " looks sick, " + $scope.name : "Looks flat this week. Get to work, " + $scope.name;
+
+      // Create chart
+      // $scope.chart = forecastData.map(function(forecast, index) {
+      //   return {
+      //     x: index,
+      //     rating: forecast.solidRating,
+      //     swell: forecast.swell.components.primary.compassDirection + " " + forecast.swell.components.primary.height + "ft @ " + forecast.swell.components.primary.period + "sec",
+      //     wind: forecast.wind.compassDirection + " " + forecast.wind.speed + "mph"
+      //   };
+      // });
+      $scope.chart = {
+          labels : forecastData.map(function(forecast) {
+                      return '';
+                    }),
+          datasets : [
+              // {
+              //     fillColor : "rgba(151,187,205,0)",
+              //     strokeColor : "#e67e22",
+              //     pointColor : "rgba(151,187,205,0)",
+              //     pointStrokeColor : "#e67e22",
+              //     data : forecastData.map(function(forecast, index) {
+              //               return {
+              //                 x: index,
+              //                 rating: forecast.solidRating,
+              //                 swell: forecast.swell.components.primary.compassDirection + " " + forecast.swell.components.primary.height + "ft @ " + forecast.swell.components.primary.period + "sec",
+              //                 wind: forecast.wind.compassDirection + " " + forecast.wind.speed + "mph"
+              //               };
+              //             })
+              // },
+              {
+                  fillColor : "rgba(151,187,205,0)",
+                  strokeColor : "rgba(255,255,255,0.8)",
+                  // pointColor : "rgba(151,187,205,0)",
+                  // pointStrokeColor : "#f1c40f",
+                  data : forecastData.map(function(forecast) {
+                            return forecast.solidRating + forecast.fadedRating;
+                          })
+              }
+          ]
+      };
+
+      console.log($scope.chart);
+
+      // Set chart options
+      $scope.chartOptions = {
+        // axes: {
+        //   x: {key: 'x', labelFunction: function(value) {return value;}, type: 'linear', min: 0, max: 10},
+        //   y: {type: 'linear', min: 0, max: 1},
+        //   y2: {type: 'linear', min: 0, max: 1}
+        // },
+        // series: [
+        //   {y: 'value', color: 'steelblue', thickness: '2px', type: 'area', striped: true, label: 'Pouet'},
+        //   {y: 'otherValue', axis: 'y2', color: 'lightsteelblue', visible: false, drawDots: true, dotSize: 2}
+        // ],
+        // lineMode: 'linear',
+        // tension: 0.7,
+        // tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return 'pouet';}},
+        // drawLegend: true,
+        // drawDots: true,
+        // columnsHGap: 5
+      };
+
 
       $scope.hasSpot = true;
       $scope.isProcessing = false;

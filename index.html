@@ -3,7 +3,7 @@
   <head>
     <title>New Tab</title>
     <link rel="stylesheet" type="text/css" href="app/app.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/font-awesome.css">
   </head>
 
   <body ng-controller="MainController">
@@ -51,6 +51,7 @@
             <i ng-if="isProcessing" class="fa fa-spin fa-circle-o-notch fa-2x"></i>
           </div>
           <!-- Display graph -->
+          <canvas ng-if="hasSpot" linechart responsive="true" options="chartOptions" data="chart" width="500" height="150"></canvas>
         </div>
       </div>
 
@@ -94,7 +95,9 @@
 
     <!-- bower components -->
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/chartjs/Chart.js"></script>
     <script src="assets/angular-bootstrap/ui-bootstrap-typeahead.js"></script>
+    <script src="assets/angles.js"></script>
     <!-- App -->
     <script src="app/app.js"></script>
     <script src="app/mswspots.js"></script>
