@@ -77,9 +77,8 @@ angular.module('snowmentum', ["ui.bootstrap"])
   };
 
   // Surf spot inputs
-  $scope.spotNames = spotNames; // From mswspots.js
+  $scope.spots = spotNames; // From mswspots.js
   $scope.spot = {};
-  console.log($scope.spotNames);
 
   $scope.resetSpot = function() {
     $scope.spot.name = "";

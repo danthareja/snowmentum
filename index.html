@@ -34,7 +34,7 @@
           <div ng-if="!hasSpot" class="prompt">
             <form ng-submit="getForecast()">
               <h3>Where do you surf?</h3>
-              <input type="text" ng-model="spot.name" typeahead="spotName for spotName in $scope.spotNames | filter:$viewValue | limitTo:8" typeahead-editable="false">
+              <input type="text" ng-model="spot.name" typeahead="spot for spot in spots | filter:$viewValue | limitTo:8" typeahead-editable="false">
             </form>
           </div>
           <!-- Display graph -->
